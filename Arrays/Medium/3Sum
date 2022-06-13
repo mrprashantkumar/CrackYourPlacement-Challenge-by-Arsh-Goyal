@@ -1,0 +1,24 @@
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        l = len(nums)
+        ans=[]
+        nums.sort()
+        
+        for i in range(l):
+            if i>0 and nums[i]==nums[i-1]:
+                continue
+            
+            low, high = i+1, l-1
+            while low<high:
+                s = nums[low]+nums[high]
+                if s == -nums[i]:
+                    ans.append([nums[i], nums[low], nums[high]])
+                    low+=1
+                    while low<high and nums[low]==nums[low-1]:
+                        low+=1
+                elif s> -nums[i]:
+                    high-=1
+                else:
+                    low+=1
+        
+        return ans
